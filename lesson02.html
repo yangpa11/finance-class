@@ -34,9 +34,10 @@
     @media(max-width:900px){.hint{display:none}.topbar{padding-inline:10px;gap:8px}.nav-btn{padding:7px 10px}.slide-inner{width:calc(100vw - 20px);border-radius:10px}.choice-grid,.job-grid,.pay-grid,.check-grid{grid-template-columns:repeat(2,1fr)}.sequence-grid,.payday-flow{grid-template-columns:repeat(2,1fr)}.concept{grid-template-columns:160px 1fr}.bigicon{font-size:100px}.notes{width:calc(100vw - 36px);max-width:none}}
     .slide[data-role="student"] .slide-body{height:calc(100% - 93px)}.deposit{padding-inline:16px}.deposit strong{font-size:clamp(30px,3.1vw,50px);white-space:nowrap}.choice small{font-size:18px;color:var(--gray);font-weight:800}.bank-row{width:100%;border:0;border-bottom:1px solid var(--line);background:#fff;color:var(--navy);text-align:left;cursor:pointer}.bank-row:last-child{border-bottom:0}.bank-row.good{background:var(--green2)}.bank-row.bad{background:#fff0f0}.video-wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.video-frame{width:min(920px,100%);min-height:0;flex:1;border:0;border-radius:20px;background:#071b2d;box-shadow:var(--shadow)}.video-meta{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:18px;font-weight:900;color:var(--gray)}.video-link{display:inline-block;border-radius:11px;padding:9px 15px;background:var(--orange);color:#fff;text-decoration:none;font-weight:900}.video-link:focus-visible{outline:4px solid #ffd079;outline-offset:3px}
   </style>
+  <link rel="stylesheet" href="lesson01-05-topbar.css?v=20260827">
 </head>
 <body>
-  <header class="topbar"><div class="brand">전공과 금융생활교육 2차시 · 일하면 돈을 받아요</div><nav class="top-nav" aria-label="슬라이드 이동"><button class="nav-btn" id="prevBtn" type="button" onclick="prev()" aria-label="이전 슬라이드">← 이전</button><button class="nav-btn" id="nextBtn" type="button" onclick="next()" aria-label="다음 슬라이드">다음 →</button></nav><div class="counter" id="counter" aria-live="polite"></div><div class="hint">← → 이동 · N 강의자 노트 · F 전체화면</div></header>
+  <header class="topbar"><div class="brand">금융생활교육 · 2차시</div><nav class="top-nav" aria-label="수업 화면 이동"><a class="nav-btn home-btn" href="index.html">목록</a><button class="nav-btn full-btn" id="fullBtn" type="button">전체화면</button><button class="nav-btn" id="prevBtn" type="button" onclick="prev()">← 이전</button><span class="counter" id="counter" aria-live="polite"></span><button class="nav-btn" id="nextBtn" type="button" onclick="next()">다음 →</button></nav></header>
   <div class="progress-track"><div class="progress" id="progress"></div></div>
   <main class="deck">
     <section class="slide hero" data-role="teacher" data-note="1차시에서 사용한 돈이 어디에서 생겼는지 떠올리며 시작합니다. 오늘은 직장에서 약속한 일을 하고 급여를 받는 흐름을 생활 장면으로 연습합니다. 학생의 취업 경험 유무를 공개적으로 묻기보다 화면 상황에 함께 참여하게 합니다."><div class="slide-inner"><div class="slide-body"><div class="hero-grid"><div class="hero-copy"><div class="eyebrow">전공과 금융생활교육 · 2차시</div><h1>일하면<br><span>돈을 받아요</span></h1><p>약속을 확인하고, 일하고, 급여가 들어왔는지 확인합니다.</p></div><div class="payday-visual"><div class="phone"><div class="phone-top">은행 입금 알림</div><div class="deposit"><span>급여 입금</span><strong>1,200,000원</strong><b>8월 25일</b></div></div></div></div></div><div class="slide-no">1 / 30</div></div></section>
@@ -100,8 +101,8 @@
     <section class="slide" data-role="teacher" data-note="학생들과 세 문장을 한 번씩 읽습니다. 마지막 질문은 답을 설명하지 않고 궁금증으로 남깁니다. 다음 차시는 급여명세서에서 지급액, 공제액, 실수령액을 찾는 수업입니다."><div class="slide-inner"><h1 class="slide-title">오늘의 핵심 3가지</h1><div class="slide-body"><div class="core-three"><div><span>1</span>급여는 <b>일한 대가</b>로 받는 돈입니다.</div><div><span>2</span>일하기 전에 <b>업무·시간·급여·급여일</b>을 확인합니다.</div><div><span>3</span>급여일에는 <b>입금 내용과 명세서</b>를 확인합니다.</div></div><div class="next-question"><b>다음 시간</b> · 내 월급은 왜 이것밖에 안 들어왔지?<br>“약속한 월급과 통장에 들어온 돈은 왜 다를 수 있을까요?”</div></div><div class="slide-no">30 / 30</div></div></section>
   </main>
 
-  <aside class="notes" id="notes"><h3>강의자 노트</h3><p id="noteText"></p><div class="shortcut">N 키로 닫기</div></aside>
-  <div class="toast" id="toast"></div><div class="help">화면 좌·우 클릭으로 이동 가능</div>
+  <aside class="notes" id="notes"><div class="note-head"><h3>강의자 노트</h3><button class="note-close" id="noteClose" type="button">닫기 ×</button></div><p id="noteText"></p></aside>
+  <div class="toast" id="toast"></div>
   <script>
     let idx=0;
     const slides=[...document.querySelectorAll('.slide')];
@@ -181,5 +182,6 @@
     function toast(message){const box=document.getElementById('toast');box.textContent=message;box.classList.add('show');setTimeout(()=>box.classList.remove('show'),1500)}
     show(0);
   </script>
+  <script src="lesson01-05-topbar.js?v=20260827"></script>
 </body>
 </html>

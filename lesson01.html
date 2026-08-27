@@ -4,8 +4,8 @@
 @media(max-width:900px){.hint{display:none}.slide-inner{width:calc(100vw - 20px);border-radius:10px}.notes{width:calc(100vw - 36px);max-width:none}.choice-grid,.budget-items{grid-template-columns:repeat(2,1fr)}.bigicon{font-size:100px}.icon-concept{grid-template-columns:160px 1fr}.activity-intro img{height:260px}}
 .brand{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.topbar{gap:12px}.top-nav{display:flex;align-items:center;gap:8px}.nav-btn{border:1px solid rgba(255,255,255,.34);background:#173b59;color:#fff;border-radius:9px;padding:7px 12px;font-weight:900;line-height:1;cursor:pointer;transition:background .18s,transform .18s,opacity .18s}.nav-btn:hover:not(:disabled){background:#245575;transform:translateY(-1px)}.nav-btn:focus-visible{outline:3px solid #ffd079;outline-offset:2px}.nav-btn:disabled{opacity:.35;cursor:not-allowed}.counter{min-width:48px;text-align:center}.kicker{font-size:clamp(15px,1.15vw,19px)}.mini-status,.instruction{font-size:clamp(19px,1.5vw,24px)}.three-cards small{font-size:clamp(19px,1.35vw,22px)}.classify-grid button::after{font-size:clamp(18px,1.25vw,21px)}.scenario-caption,.condition,.feedback-box,.quiz-feedback{font-size:clamp(18px,1.35vw,22px)}.budget-items button b,.budget-items button small{margin-top:5px}.budget-items button b{font-size:clamp(20px,1.55vw,25px)}.budget-items button small{font-size:clamp(18px,1.3vw,22px);font-weight:800}@media(max-width:900px){.topbar{padding-inline:10px;gap:8px}.nav-btn{padding:7px 10px}}
 .top-nav{flex:none}.nav-btn{white-space:nowrap}
-</style></head><body>
-<header class="topbar"><div class="brand">전공과 금융생활교육 1차시 · 돈은 왜 필요할까?</div><nav class="top-nav" aria-label="슬라이드 이동"><button class="nav-btn" id="prevBtn" type="button" onclick="prev()" aria-label="이전 슬라이드">← 이전</button><button class="nav-btn" id="nextBtn" type="button" onclick="next()" aria-label="다음 슬라이드">다음 →</button></nav><div class="counter" id="counter" aria-live="polite"></div><div class="hint">← → 이동 · N 강의자 노트 · F 전체화면</div></header><div class="progress-track"><div class="progress" id="progress"></div></div>
+</style><link rel="stylesheet" href="lesson01-05-topbar.css?v=20260827"></head><body>
+<header class="topbar"><div class="brand">금융생활교육 · 1차시</div><nav class="top-nav" aria-label="수업 화면 이동"><a class="nav-btn home-btn" href="index.html">목록</a><button class="nav-btn full-btn" id="fullBtn" type="button">전체화면</button><button class="nav-btn" id="prevBtn" type="button" onclick="prev()">← 이전</button><span class="counter" id="counter" aria-live="polite"></span><button class="nav-btn" id="nextBtn" type="button" onclick="next()">다음 →</button></nav></header><div class="progress-track"><div class="progress" id="progress"></div></div>
 <main class="deck"><section class="slide hero" data-role="teacher" data-note="오늘은 금융교육의 출발점입니다. 용어 암기보다 ‘돈에는 한계가 있고, 그래서 선택이 필요하다’는 경험을 만드는 것이 목표입니다. 학생들이 이후 월급·예산·저축·신용 수업을 이해하려면 이 감각이 먼저 생겨야 합니다.">
       <div class="slide-inner">
       
@@ -196,13 +196,13 @@
       <div class="slide-body"><div class="final-three compact"><div><span>1</span><b>돈은 생활에 사용한다.</b></div><div><span>2</span><b>가진 돈에는 한계가 있다.</b></div><div><span>3</span><b>그래서 먼저 쓸 곳을 선택한다.</b></div></div><div class="exit"><b>다음 시간</b> · 일 → 급여 → 월급<br>“돈을 쓸 때 나는 ______을 먼저 생각하겠습니다.”</div></div>
       <div class="slide-no">30 / 30</div>
       </div></section></main>
-<aside class="notes" id="notes"><h3>강의자 노트</h3><p id="noteText"></p><div class="shortcut">N 키로 닫기</div></aside><div class="toast" id="toast"></div><div class="help">화면 좌·우 클릭으로 이동 가능</div>
+<aside class="notes" id="notes"><div class="note-head"><h3>강의자 노트</h3><button class="note-close" id="noteClose" type="button">닫기 ×</button></div><p id="noteText"></p></aside><div class="toast" id="toast"></div>
 <script>
 let idx=0; const slides=[...document.querySelectorAll('.slide')]; const progress=document.getElementById('progress'); const counter=document.getElementById('counter'); const notes=document.getElementById('notes'); const noteText=document.getElementById('noteText'); const prevBtn=document.getElementById('prevBtn'); const nextBtn=document.getElementById('nextBtn');
 function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>s.classList.toggle('active',j===idx)); const pct=((idx+1)/slides.length)*100; progress.style.width=pct+'%'; progress.classList.toggle('student',slides[idx].dataset.role==='student'); counter.textContent=`${idx+1} / ${slides.length}`; noteText.textContent=slides[idx].dataset.note||''; prevBtn.disabled=idx===0; nextBtn.disabled=idx===slides.length-1;}
 function next(){show(idx+1)} function prev(){show(idx-1)}
 document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown'].includes(e.key)||e.key===' '){if(!e.target.matches('button,input,textarea')){e.preventDefault();next()}} if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()} if(e.key.toLowerCase()==='n'){notes.classList.toggle('show')} if(e.key.toLowerCase()==='f'){document.documentElement.requestFullscreen?.()}});
-document.addEventListener('click',e=>{if(e.target.closest('button')) return; if(e.clientX>window.innerWidth*.78) next(); else if(e.clientX<window.innerWidth*.22) prev();});
+document.addEventListener('click',e=>{if(e.target.closest('button,a,iframe')) return; if(e.clientX>window.innerWidth*.78) next(); else if(e.clientX<window.innerWidth*.22) prev();});
 function togglePick(btn,id){btn.classList.toggle('selected');const count=btn.parentElement.querySelectorAll('.selected').length;document.getElementById(id).textContent=count+'개'}
 function revealMatch(btn,ans){if(btn.classList.contains('revealed'))return;btn.classList.add('revealed');btn.insertAdjacentHTML('beforeend',`<small>→ ${ans}</small>`)}
 function classify(btn,ans){btn.classList.add('correct');btn.dataset.result='→ '+ans}
@@ -215,4 +215,4 @@ let applyTotal=0;function applyPick(btn,cost){btn.classList.toggle('selected');a
 function quiz(btn,correct,id){btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('good','bad'));btn.classList.add(correct?'good':'bad');document.getElementById(id).textContent=correct?'정답! 조건을 보고 필요한 선택을 잘 했어요.':'다시 생각해보세요. 화면의 조건을 한 번 더 확인해보세요.'}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
 show(0);
-</script></body></html>
+</script><script src="lesson01-05-topbar.js?v=20260827"></script></body></html>

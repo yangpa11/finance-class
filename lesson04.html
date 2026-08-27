@@ -34,9 +34,10 @@ button.choice{min-height:82px;border:3px solid #c9d7dc;background:#fff;border-ra
 @media(max-width:900px){body{overflow:auto}.topbar{height:64px;padding:0 10px;gap:7px}.brand{font-size:16px}.nav-btn{padding:8px 10px;font-size:16px}.counter{font-size:16px;min-width:53px}.deck{height:auto}.slide{min-height:calc(100vh - 71px);height:auto;padding:8px}.slide-inner{height:auto;min-height:calc(100vh - 87px);padding:35px 22px 54px;border-radius:18px;overflow:visible}.slide-title{font-size:33px}.slide-body{font-size:20px}.hero .slide-title{font-size:45px}.hero-art{font-size:70px;right:22px;bottom:90px}.goal-grid,.three,.video-wrap,.two,.scenario,.budget-status{grid-template-columns:1fr}.expense-list,.amount-options,.quiz-options{grid-template-columns:1fr 1fr}.order{flex-direction:column}.order span{transform:rotate(90deg)}.help{display:none}.video-wrap iframe{min-height:240px}}
 @media(max-width:520px){.brand{display:none}.expense-list,.amount-options,.quiz-options,.budget-summary{grid-template-columns:1fr}.slide-title{font-size:30px}.hero .slide-title{font-size:38px}.hero-art{display:none}}
 </style>
+<link rel="stylesheet" href="lesson01-05-topbar.css?v=20260827">
 </head>
 <body>
-<header class="topbar"><div class="brand">금융생활교육 · 4차시</div><button class="nav-btn" id="prevBtn" onclick="prev()">← 이전</button><button class="nav-btn" id="nextBtn" onclick="next()">다음 →</button><div class="counter" id="counter">1 / 30</div></header>
+<header class="topbar"><div class="brand">금융생활교육 · 4차시</div><nav class="toolbar" aria-label="수업 화면 이동"><a class="nav-btn home-btn" href="index.html">목록</a><button class="nav-btn full-btn" id="fullBtn" type="button">전체화면</button><button class="nav-btn" id="prevBtn" type="button" onclick="prev()">← 이전</button><span class="counter" id="counter" aria-live="polite">1 / 30</span><button class="nav-btn" id="nextBtn" type="button" onclick="next()">다음 →</button></nav></header>
 <div class="progress-track"><div class="progress" id="progress"></div></div>
 <main class="deck">
 <section class="slide active" data-role="teacher" data-note="3차시에서 확인한 실수령액 120만 원을 다시 보여주며 시작합니다. 학생에게 ‘이 돈을 한 달 동안 어디에 먼저 써야 할까?’라고 묻고 자유롭게 가리키거나 말하게 합니다."><div class="slide-inner hero"><div class="kicker">4차시</div><h1 class="slide-title">한 달 동안<br>어디에 돈을 쓸까?</h1><div class="hero-sub">월급을 받기 전에, 쓸 곳을 먼저 정해요</div><div class="money-line">한 달 실수령액 1,200,000원</div><div class="hero-art" aria-hidden="true">💰📅</div><div class="slide-no">1 / 30</div></div></section>
@@ -99,8 +100,7 @@ button.choice{min-height:82px;border:3px solid #c9d7dc;background:#fff;border-ra
 
 <section class="slide" data-role="teacher" data-note="핵심 세 문장을 함께 읽습니다. 마지막 질문으로 5차시를 예고합니다. ‘운동화가 찢어지거나 병원비가 생기면 오늘 만든 예산을 어떻게 바꿀까?’라고 물으며 마칩니다."><div class="slide-inner"><h1 class="slide-title">오늘의 핵심 3가지</h1><div class="slide-body"><div class="final-three"><div><span>1</span>예산은 쓰기 전에 세우는 돈 계획입니다.</div><div><span>2</span>생활에 먼저 필요한 돈을 확보합니다.</div><div><span>3</span>한 달에 들어온 돈 안에서 나눕니다.</div></div><div class="next-box">다음 시간 질문 · 갑자기 필요한 돈이 생기면 예산을 어떻게 바꿀까요?</div></div><div class="slide-no">30 / 30</div></div></section>
 </main>
-<aside class="notes" id="notes"><h3>강의자 노트</h3><p id="noteText"></p><div class="shortcut">N 키로 닫기</div></aside>
-<div class="help">화면 좌·우 클릭 · 방향키 이동 · N 노트 · F 전체화면</div>
+<aside class="notes" id="notes"><div class="note-head"><h3>강의자 노트</h3><button class="note-close" id="noteClose" type="button">닫기 ×</button></div><p id="noteText"></p></aside>
 <script>
 let idx=0;
 const slides=[...document.querySelectorAll('.slide')];
@@ -126,5 +126,6 @@ function renderBudget(){let total=Object.values(budget).reduce((a,b)=>a+b,0);let
 function quiz(btn,correct,id){markOne(btn);btn.classList.add(correct?'good':'bad');document.getElementById(id).textContent=correct?'정답! 조건을 보고 안전한 계획을 골랐어요.':'다시 생각해보세요. 가진 돈, 필요한 항목, 조정할 항목을 확인해요.'}
 show(0);
 </script>
+<script src="lesson01-05-topbar.js?v=20260827"></script>
 </body>
 </html>
