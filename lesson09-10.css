@@ -1,0 +1,86 @@
+:root { --purple: #6d4cc4; --blue: #1666a8; }
+
+/* 카드 안의 마지막 한 글자가 홀로 다음 줄로 넘어가지 않도록 어절 단위로 배치한다. */
+h1, h2, h3, p, li, button, .student-callout, .next-question, .contract-row, .metric {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+h1, h2, h3 { text-wrap: balance; }
+
+.lesson09 .hero-art { background: linear-gradient(145deg, #0e7f72, #1769a6); }
+.lesson10 .hero-art { background: linear-gradient(145deg, #6d4cc4, #e46d3d); }
+
+.goal-card {
+  border: 3px solid #78c8ac; border-radius: 24px; padding: 24px;
+  background: linear-gradient(135deg, #f1fcf7, #eef6ff); box-shadow: 0 12px 30px rgba(14,42,71,.09);
+}
+.goal-card h3 { margin: 8px 0 12px; color: var(--navy); font-size: 29px; }
+.goal-card .price { margin: 0; }
+.goal-visual { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.goal-icon { display: grid; place-items: center; width: 130px; height: 130px; border-radius: 34px; background: #fff; font-size: 76px; box-shadow: 0 12px 30px rgba(14,42,71,.12); }
+
+.metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+.metric { border: 2px solid var(--line); border-radius: 19px; padding: 20px 14px; background: #fff; color: #415568; text-align: center; font-size: 19px; font-weight: 850; line-height: 1.4; }
+.metric strong { display: block; margin-top: 8px; color: var(--teal); font-size: clamp(25px, 3vw, 36px); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.metric.orange strong { color: var(--orange); }
+
+.equation { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin: 18px auto; }
+.equation span, .equation strong { border-radius: 17px; padding: 16px 20px; background: #eef5f4; color: var(--navy); font-size: clamp(24px, 3.2vw, 38px); font-weight: 950; white-space: nowrap; }
+.equation b { color: var(--orange); font-size: 34px; }
+
+.budget-stack { display: grid; gap: 12px; }
+.budget-row { display: grid; grid-template-columns: minmax(160px,1fr) minmax(220px,2fr) 150px; align-items: center; gap: 14px; font-size: 20px; font-weight: 850; }
+.budget-bar { height: 25px; overflow: hidden; border-radius: 999px; background: #e7ecef; }
+.budget-bar i { display: block; height: 100%; border-radius: inherit; background: var(--teal); }
+.budget-row.out .budget-bar i { background: var(--orange); }
+.budget-row strong { color: var(--navy); text-align: right; white-space: nowrap; }
+
+.plan-box { border: 3px solid #72c6a5; border-radius: 24px; padding: 24px; background: #f0fbf6; }
+.plan-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+.plan-option, .toggle-option {
+  min-height: 68px; border: 3px solid #b9c6cf; border-radius: 17px; padding: 14px 16px;
+  background: #fff; color: var(--navy); font-size: 21px; font-weight: 900; line-height: 1.35; cursor: pointer;
+}
+.plan-option:hover, .toggle-option:hover { border-color: var(--green); background: #f4fcf8; }
+.plan-option.selected, .toggle-option.selected { border-color: var(--green); background: #dcf6e9; box-shadow: inset 0 0 0 2px #fff; }
+.plan-result { min-height: 62px; margin-top: 18px; border-radius: 16px; padding: 16px 18px; background: var(--navy); color: #fff; font-size: 22px; font-weight: 900; line-height: 1.45; text-align: center; }
+.toggle-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 16px; }
+
+.timeline { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; }
+.month { position: relative; border: 2px solid #a9bbb9; border-radius: 18px; padding: 18px 10px; background: #fff; text-align: center; }
+.month::before { content: ""; display: block; width: 25px; height: 25px; margin: 0 auto 9px; border-radius: 50%; background: var(--green); }
+.month b { display: block; color: var(--navy); font-size: 21px; }
+.month span { display: block; margin-top: 7px; color: var(--teal); font-size: 18px; font-weight: 850; white-space: nowrap; }
+
+.contract { overflow: hidden; border: 3px solid #9eb0bc; border-radius: 21px; background: #fffef8; }
+.contract-title { padding: 15px 20px; background: var(--navy); color: #fff; font-size: 23px; font-weight: 950; text-align: center; }
+.contract-row { display: grid; grid-template-columns: 190px 1fr; gap: 16px; padding: 15px 20px; border-bottom: 1px solid #dce3e7; font-size: 20px; line-height: 1.45; }
+.contract-row:last-child { border-bottom: 0; }
+.contract-row span { color: #526579; font-weight: 850; }
+.contract-row strong { color: var(--navy); font-weight: 950; }
+
+.risk-card { border: 3px solid #e5a070; border-radius: 22px; padding: 22px; background: #fff7f0; }
+.risk-card.safe { border-color: #73c4a3; background: #f0fbf6; }
+.risk-card h3 { margin: 9px 0 13px; color: var(--navy); font-size: 26px; }
+.risk-card p { margin: 0; font-size: 20px; font-weight: 750; line-height: 1.5; }
+.tag { display: inline-block; border-radius: 999px; padding: 7px 13px; background: #ffe5d2; color: #9b3d0d; font-size: 17px; font-weight: 950; }
+.risk-card.safe .tag { background: #dff5e9; color: #08715a; }
+
+.calendar { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+.date-card { border: 2px solid var(--line); border-radius: 18px; padding: 18px 12px; background: white; text-align: center; }
+.date-card strong { display: block; color: var(--navy); font-size: 28px; }
+.date-card span { display: block; margin-top: 7px; color: #506479; font-size: 18px; font-weight: 850; }
+.date-card.due { border: 4px solid var(--orange); background: #fff5ec; }
+
+@media (max-width: 900px) {
+  .metric-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .budget-row { grid-template-columns: minmax(130px,1fr) minmax(160px,1.5fr) 120px; }
+  .timeline { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (max-width: 620px) {
+  .plan-options, .toggle-options, .calendar { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .budget-row { grid-template-columns: 1fr 100px; }
+  .budget-row .budget-bar { grid-column: 1 / -1; grid-row: 2; }
+  .contract-row { grid-template-columns: 1fr; gap: 5px; }
+}

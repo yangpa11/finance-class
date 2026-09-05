@@ -37,6 +37,7 @@ button.choice{min-height:82px;border:3px solid #c9d7dc;background:#fff;border-ra
 @media(max-width:520px){.brand{display:none}.calendar,.budget-grid,.month-track,.quiz-options{grid-template-columns:1fr}.slide-title{font-size:30px}.hero .slide-title{font-size:38px}.hero-art{display:none}.ledger-row{grid-template-columns:1fr;font-size:17px;gap:4px}}
 </style>
 <link rel="stylesheet" href="lesson01-05-topbar.css?v=20260827">
+<link rel="stylesheet" href="lesson01-05-advanced.css?v=20260905">
 </head>
 <body>
 <header class="topbar"><div class="brand">금융생활교육 · 5차시</div><nav class="toolbar" aria-label="수업 화면 이동"><a class="nav-btn home-btn" href="index.html">목록</a><button class="nav-btn full-btn" id="fullBtn" type="button">전체화면</button><button class="nav-btn" id="prevBtn" type="button" onclick="prev()">← 이전</button><span class="counter" id="counter" aria-live="polite">1 / 30</span><button class="nav-btn" id="nextBtn" type="button" onclick="next()">다음 →</button></nav></header>
@@ -129,5 +130,6 @@ function quiz(btn,correct,id){markOne(btn);btn.classList.add(correct?'good':'bad
 show(0);
 </script>
 <script src="lesson01-05-topbar.js?v=20260827"></script>
+<script src="lesson01-05-advanced.js?v=20260905"></script>
 </body>
 </html>
