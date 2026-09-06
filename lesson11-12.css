@@ -1,0 +1,89 @@
+:root { --violet: #7047c8; --coral: #e45e42; --gold: #d58a16; }
+body { word-break: keep-all; overflow-wrap: normal; }
+
+/* 카드·버튼 안에서 한 글자만 다음 줄로 떨어지지 않게 어절 단위로 배치한다. */
+h1, h2, h3, p, li, button, .offer-card, .promise-card, .action-card, .term-chip {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+h1, h2, h3 { text-wrap: balance; }
+/* 긴 화면은 위에서부터 스크롤하고, 짧은 화면만 세로 가운데 정렬한다. */
+.slide.active { display: flex; flex-direction: column; align-items: center; }
+.slide-inner { flex: 0 0 auto; margin-block: auto; }
+.art-row strong { white-space: nowrap; }
+.example-caption { margin: 14px 0 0; color: var(--muted); font-size: 18px; line-height: 1.45; }
+
+.lesson11 .hero-art { background: linear-gradient(145deg, #156a9c, #7047c8 64%, #e45e42); }
+.lesson12 .hero-art { background: linear-gradient(145deg, #b44b2c, #7b3d8a 55%, #183f68); }
+
+.offer-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.offer-card {
+  position: relative; border: 3px solid #bfcbd2; border-radius: 22px; padding: 22px;
+  background: #fff; box-shadow: 0 9px 24px rgba(14,42,71,.07);
+}
+.offer-card.best { border-color: var(--green); background: #f0fbf6; }
+.offer-card.warn { border-color: #e5a070; background: #fff7f0; }
+.offer-card h3 { margin: 10px 0 15px; color: var(--navy); font-size: 27px; }
+.offer-card p { margin: 7px 0; color: #40546a; font-size: 20px; font-weight: 800; line-height: 1.45; }
+.offer-card strong { display: block; margin-top: 9px; color: var(--teal); font-size: clamp(24px, 2.4vw, 31px); white-space: nowrap; }
+
+.term-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+.term-chip { border: 2px solid #c9d4da; border-radius: 19px; padding: 20px 14px; background: #fff; text-align: center; }
+.term-chip b { display: block; color: var(--navy); font-size: 24px; }
+.term-chip span { display: block; margin-top: 8px; color: #50647a; font-size: 18px; font-weight: 800; line-height: 1.4; }
+
+.promise-card { overflow: hidden; border: 3px solid #9eafbb; border-radius: 22px; background: #fffef8; }
+.promise-title { padding: 15px 20px; background: var(--navy); color: #fff; font-size: 23px; font-weight: 950; text-align: center; }
+.promise-row { display: grid; grid-template-columns: minmax(180px,.8fr) minmax(0,1.2fr); gap: 18px; padding: 14px 20px; border-bottom: 1px solid #dbe3e7; font-size: 20px; line-height: 1.4; }
+.promise-row:last-child { border-bottom: 0; }
+.promise-row span { color: #53677a; font-weight: 850; }
+.promise-row strong { color: var(--navy); font-weight: 950; }
+
+.offer-planner, .burden-planner, .safe-step-planner { border: 3px solid #77c7a7; border-radius: 24px; padding: 23px; background: #f0fbf6; }
+.offer-buttons, .burden-buttons, .safe-step-buttons { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.offer-button, .burden-button, .safe-step-button {
+  min-height: 74px; border: 3px solid #b9c6cf; border-radius: 17px; padding: 14px 16px;
+  background: #fff; color: var(--navy); font-size: 20px; font-weight: 900; line-height: 1.4; cursor: pointer;
+}
+.offer-button:hover, .burden-button:hover, .safe-step-button:hover { border-color: var(--green); background: #f5fcf8; }
+.offer-button.selected, .burden-button.selected, .safe-step-button.selected { border-color: var(--green); background: #dcf6e9; box-shadow: inset 0 0 0 2px #fff; }
+.offer-button.selected::after, .burden-button.selected::after, .safe-step-button.selected::after { content: ' · 선택됨'; font-size: 18px; }
+.offer-button:focus-visible, .burden-button:focus-visible, .safe-step-button:focus-visible { outline: 4px solid var(--orange); outline-offset: 3px; }
+.planner-result { min-height: 66px; margin-top: 17px; border-radius: 16px; padding: 16px 18px; background: var(--navy); color: #fff; font-size: 21px; font-weight: 900; line-height: 1.45; text-align: center; }
+
+.warning-strip { margin-top: 18px; border-left: 9px solid var(--orange); border-radius: 16px; padding: 17px 20px; background: #fff2e8; color: var(--navy); font-size: 22px; font-weight: 900; line-height: 1.45; }
+.safe-strip { margin-top: 18px; border-left: 9px solid var(--green); border-radius: 16px; padding: 17px 20px; background: #edf9f4; color: var(--navy); font-size: 22px; font-weight: 900; line-height: 1.45; }
+
+.due-timeline { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; }
+.due-day { border: 2px solid #bac7cf; border-radius: 19px; padding: 17px 10px; background: #fff; text-align: center; }
+.due-day strong { display: block; color: var(--navy); font-size: 27px; }
+.due-day span { display: block; margin-top: 7px; color: #506479; font-size: 18px; font-weight: 850; line-height: 1.35; }
+.due-day.alert { border: 4px solid var(--orange); background: #fff3e9; }
+.due-day.safe { border: 4px solid var(--green); background: #effbf5; }
+
+.action-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+.action-card { border: 2px solid #cbd5db; border-radius: 20px; padding: 19px 15px; background: #fff; text-align: center; }
+.action-card b { display: grid; width: 40px; height: 40px; margin: 0 auto 10px; place-items: center; border-radius: 50%; background: var(--teal); color: #fff; font-size: 21px; }
+.action-card strong { display: block; color: var(--navy); font-size: 23px; }
+.action-card span { display: block; margin-top: 7px; color: #53677a; font-size: 18px; font-weight: 800; line-height: 1.4; }
+
+.credit-path { display: flex; align-items: stretch; justify-content: center; gap: 13px; flex-wrap: wrap; }
+.credit-step { flex: 1 1 190px; min-width: 180px; border: 2px solid #cbd5db; border-radius: 20px; padding: 20px; background: #fff; text-align: center; }
+.credit-step strong { display: block; color: var(--navy); font-size: 24px; }
+.credit-step span { display: block; margin-top: 8px; color: #506479; font-size: 19px; font-weight: 800; line-height: 1.45; }
+.credit-arrow { display: grid; place-items: center; color: var(--orange); font-size: 35px; font-weight: 950; }
+
+@media (max-width: 900px) {
+  .offer-grid, .offer-buttons, .burden-buttons, .safe-step-buttons { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .term-grid, .action-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .due-timeline { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (max-width: 620px) {
+  .metric-grid { grid-template-columns: 1fr; }
+  .art-row { flex-wrap: wrap; justify-content: center; text-align: center; }
+  .offer-grid, .offer-buttons, .burden-buttons, .safe-step-buttons, .term-grid, .action-grid, .due-timeline { grid-template-columns: 1fr; }
+  .promise-row { grid-template-columns: 1fr; gap: 5px; }
+  .credit-path { flex-direction: column; }
+  .credit-step { flex: none; }
+  .credit-arrow { align-self: center; width: 40px; height: 40px; transform: rotate(90deg); }
+}
