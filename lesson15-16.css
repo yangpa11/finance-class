@@ -1,0 +1,44 @@
+/* 15·16차시 전용. 기존 차시의 공통 파일은 수정하지 않는다. */
+.lesson15 .hero { background: linear-gradient(130deg,#0e2a47 0%,#16518b 54%,#f47b34 100%); }
+.lesson16 .hero { background: linear-gradient(130deg,#0e2a47 0%,#0f766e 53%,#f2a83b 100%); }
+.lesson15 .hero h1 { font-size: clamp(42px,4.4vw,66px); }
+.hero .art-row strong, .hero-badge { word-break:keep-all; }
+.triage-lab,.urgent-sequence,.month-event { width:100%;margin-top:20px; }
+.case-tab,.response-option,.urgent-option,.month-option {
+ font:inherit;font-size:22px;font-weight:800;line-height:1.5;word-break:keep-all;
+ border:2px solid #bdcec9;border-radius:15px;background:#fff;color:#0e2a47;
+ padding:15px 18px;min-height:64px;cursor:pointer;text-wrap:balance;
+}
+.case-tab { font-size:20px; }
+.case-tab[aria-pressed="true"],.month-option[aria-pressed="true"],.urgent-option.selected {
+ background:#e0f4e9;border-color:#1f9d68;box-shadow:inset 0 0 0 1px #1f9d68;
+}
+.month-option[aria-pressed="true"]::after { content:' · 선택 완료';font-size:18px; }
+.month-option:disabled,.urgent-option:disabled { opacity:.85;cursor:default; }
+.month-option:focus-visible,.case-tab:focus-visible,.response-option:focus-visible,.urgent-option:focus-visible {
+ outline:4px solid #f47b34;outline-offset:3px;
+}
+.case-description { background:#f5f1e7;border-radius:14px;font-size:23px;padding:18px;line-height:1.6; }
+.month-result { min-height:54px;font-size:21px;line-height:1.55;background:#edf3f1;border-radius:14px;padding:16px 20px;margin-top:16px;word-break:keep-all; }
+.month-stats { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0 0; }
+.month-stats>div { background:#f0f5f2;border:1px solid #c5d9ce;border-radius:14px;padding:16px 12px;text-align:center; }
+.month-stats span { display:block;font-size:18px;font-weight:700;color:#425d59; }
+.month-stats strong { display:block;font-size:clamp(20px,2.1vw,28px);color:#0f766e;margin-top:10px;white-space:nowrap; }
+.goal-strip { font-size:23px;line-height:1.6;padding:18px;margin-top:20px;background:#fff1d9;border-radius:14px;word-break:keep-all; }
+.goal-strip strong { white-space:nowrap; }
+.month-ledger { width:100%;border:2px solid #bcd2c8;border-radius:16px;overflow:hidden;font-size:22px; }
+.ledger-heading,.month-ledger-row { display:grid;grid-template-columns:1.5fr 1fr;gap:14px;padding:16px 20px;line-height:1.5; }
+.ledger-heading { background:#0e2a47;color:white;font-weight:800; }
+.month-ledger-row { border-top:1px solid #d9e3dd; }
+.month-ledger-row strong { text-align:right;white-space:nowrap; }
+.month-review { font-size:22px;line-height:1.6;margin-top:20px;padding:20px;background:#edf5f0;border-radius:16px; }
+.month-review ul { margin:8px 0;padding-left:26px; }
+.month-reset { margin-top:20px; }
+.month-reset-result { font-size:19px;margin-top:14px;line-height:1.5; }
+@media(max-width:900px) { .month-stats{grid-template-columns:repeat(2,minmax(0,1fr));} .lesson15 .hero h1 {font-size:42px;} }
+@media(max-width:620px) { .case-tab,.response-option,.urgent-option,.month-option{padding:13px 12px;font-size:20px;}
+ .month-stats{gap:8px;}.month-stats>div{padding:13px 5px;}
+ .month-stats strong{font-size:20px;}.ledger-heading,.month-ledger-row{padding:14px 12px;font-size:20px;grid-template-columns:1.2fr 1fr;gap:8px;}
+ .lesson15 .hero h1 {font-size:36px;} .hero .art-row {flex-wrap:wrap;gap:8px;}
+}
+
