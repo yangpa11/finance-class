@@ -1,0 +1,27 @@
+/* 13·14차시 전용: 기존 수업 파일의 조작 체계는 변경하지 않는다. */
+.lesson13 .hero-art { background: linear-gradient(145deg,#126aa5,#7047c8 58%,#ef673d); }
+.lesson14 .hero-art { background: linear-gradient(145deg,#099986,#1564ad 58%,#7047c8); }
+.hero-badge { line-height:1.45; }
+.message-card, .mock-receipt { border:3px solid #a5b9ca; border-radius:22px; background:#f0f6fb; overflow:hidden; margin-bottom:16px; }
+.message-head { background:var(--navy); color:white; padding:15px 22px; font-size:22px; font-weight:900; }
+.message-card p { margin:0; padding:24px; font-size:clamp(23px,2.5vw,31px); line-height:1.5; font-weight:800; }
+.decision-lab,.sequence-lab { border:3px solid #82cdb0; background:#effbf5; border-radius:22px; padding:22px; }
+.lab-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+.lab-option,.sequence-option { min-height:76px; padding:16px; border:3px solid #bac9d3; border-radius:17px; background:white; color:var(--navy); font-size:22px; font-weight:900; line-height:1.4; cursor:pointer; text-align:center; }
+.lab-option[aria-pressed="true"],.sequence-option.selected { border-color:var(--green); background:#dcf5e8; }
+.selection-label { display:block; margin-top:5px; font-size:18px; color:#486177; }
+.lab-option[aria-pressed="true"] .selection-label { color:#075a43; }
+.lab-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:17px; }
+.lab-check,.lab-reset { border:2px solid var(--navy); border-radius:13px; min-height:48px; padding:10px 18px; background:var(--navy); color:white; font-size:20px; font-weight:900; cursor:pointer; }
+.lab-reset { background:white; color:var(--navy); }
+.lab-result { margin-top:16px; min-height:70px; padding:17px; border-radius:15px; background:var(--navy); color:white; font-size:21px; line-height:1.5; font-weight:800; }
+.sequence-list { margin:15px 0; padding-left:31px; font-size:22px; font-weight:900; line-height:1.65; }
+.sequence-option:disabled { cursor:default; }
+.slide.active .sequence-option.selected::after { content:' · 선택됨'; font-size:18px; }
+.slide.active .choice.correct::after { content:' · 확인 완료'; font-size:18px; }
+.slide.active .choice.retry::after { content:' · 다시 확인'; font-size:18px; }
+.help-script { border:3px solid #78c9aa; border-radius:24px; background:#effbf5; padding:30px; font-size:clamp(27px,3.4vw,42px); line-height:1.65; color:var(--navy); font-weight:900; }
+.receipt-row { display:grid; grid-template-columns:1fr 1.4fr; gap:15px; padding:15px 22px; font-size:23px; border-bottom:1px solid #c8d5df; }
+.note-close { font-size:18px; }
+.lab-option:focus-visible,.sequence-option:focus-visible,.lab-check:focus-visible,.lab-reset:focus-visible { outline:4px solid var(--orange); outline-offset:3px; }
+@media(max-width:620px) { .lab-options { grid-template-columns:1fr; } .decision-lab,.sequence-lab { padding:16px; } .message-card p,.help-script { padding:20px; } .receipt-row { grid-template-columns:1fr;gap:5px; } .cols-4 { grid-template-columns:1fr; } }
