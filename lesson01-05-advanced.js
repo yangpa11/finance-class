@@ -47,9 +47,107 @@
       <div class="advanced-equation"><span>20,000원</span><b>−</b><span>18,000원</span><b>=</b><strong>2,000원</strong></div>
       <div class="advanced-options two">${pick('2,000원만 자유롭게 쓸 수 있어요', true, 'l1s4', '맞아요. 예정된 지출을 빼면 지금 자유롭게 쓸 수 있는 돈은 2,000원이에요.')}${pick('통장에 20,000원이 있으니 모두 써도 돼요', false, 'l1s4', '내일 쓸 돈까지 함께 확인해야 해요.')}</div>${feedback('l1s4')}`);
 
-    setSlide(17, 'student', '같은 잔액이라도 가격과 이후 일정에 따라 가능한 선택이 달라집니다. 카드도 실제 잔액에서 빠질 돈임을 연결해 주세요.', '조건을 함께 보기', '2,000원으로 가능한 선택은?', `
-      <div class="advanced-banner">남은 돈 2,000원 · 내일 지출까지 이미 따로 두었어요.</div>
-      <div class="advanced-options">${pick('음료 2,000원을 카드로 산다', true, 'l1s17', '가능해요. 카드로 내도 실제 돈 2,000원을 쓰는 선택이에요.')}${pick('게임 아이템 10,000원을 결제한다', false, 'l1s17', '지금 자유롭게 쓸 수 있는 2,000원을 넘어요.')}${pick('아무것도 사지 않고 2,000원을 남긴다', true, 'l1s17', '가능해요. 남기는 것도 목적이 있는 좋은 선택이에요.')}</div>${feedback('l1s17', '가격뿐 아니라 남은 돈과 다음 지출을 함께 봐요.')}`);
+    const budgetItems = [
+      ['lunch', '🍱', '점심', 8000], ['transport', '🚌', '교통', 5000],
+      ['drink', '🥤', '음료', 3000], ['snack', '🍪', '간식', 4000],
+      ['game', '🎮', '게임', 10000], ['earphones', '🎧', '이어폰', 15000],
+      ['movie', '🎬', '영화', 12000], ['reserve', '🐷', '남기기', 5000],
+    ];
+    const budgetSelection = new Set();
+    const money = (value) => `${value.toLocaleString('ko-KR')}원`;
+
+    setSlide(17, 'student', '16장의 2만 원 활동입니다. 4장의 예정 지출 예시와는 별도로 새 계획을 만듭니다. 원하는 항목을 자유롭게 고른 뒤 필요한 지출과 이후의 필요를 확인합니다. 남기기 5천 원은 지출이 아니라 따로 둘 돈입니다. 미배정 금액도 없어지지 않습니다. 초과 선택은 추가되지 않으며 다시 누르면 선택을 취소할 수 있습니다.', '핵심 활동 · 직접 예산 만들기', '20,000원 안에서 골라보세요', `
+      <div class="lesson01-budget">
+        <div class="advanced-banner">새 계획: 오늘 가진 돈 20,000원 · 항목을 다시 누르면 취소돼요.</div>
+        <div class="budget-builder"><div class="budget-items" id="budget-items">
+          ${budgetItems.map(([id, icon, label, cost]) => `<button type="button" data-budget-id="${id}" data-cost="${cost}" aria-pressed="false"><span aria-hidden="true">${icon}</span><b>${label}</b><small>${money(cost)}</small></button>`).join('')}
+        </div><div class="budget-meter" aria-live="polite"><span>쓸 돈</span><strong id="spent">0원</strong><span>따로 남김</span><strong id="budget-reserved">0원</strong><span>아직 안 나눈 돈</span><strong id="remain">20,000원</strong><button class="reset" type="button" id="budget-reset">다시 고르기</button></div></div>
+        ${feedback('l1-budget-feedback', '남기기는 지출이 아니에요. 쓸 돈 + 따로 남김 + 아직 안 나눈 돈 = 20,000원')}
+      </div>`);
+
+    setSlide(18, 'student', '바로 앞 화면에서 학생이 만든 예산을 그대로 보여 줍니다. 쓸 돈과 남는 돈을 읽거나 가리키게 합니다. 말하기가 어려우면 선택 이유 버튼을 누르게 하세요. 하나의 이유만 정답으로 고정하지 말고 선택한 항목과 이유가 맞는지 확인합니다. 선택을 바꾸면 이 화면의 금액도 함께 바뀝니다.', '핵심 활동 · 내 선택 설명', '내가 만든 예산을 확인해요', `
+      <div class="advanced-banner" id="l1-budget-summary" aria-live="polite"></div>
+      <div class="advanced-grid two"><div class="advanced-card"><b>쓸 돈</b><strong id="l1-summary-spent">0원</strong></div><div class="advanced-card safe"><b>쓰지 않고 남는 돈</b><strong id="l1-summary-left">20,000원</strong><small id="l1-summary-reserved"></small></div></div>
+      <div class="advanced-options" id="l1-budget-reasons"><button type="button" class="advanced-choice" aria-pressed="false">오늘 필요해서</button><button type="button" class="advanced-choice" aria-pressed="false">원하는 것도 하고 싶어서</button><button type="button" class="advanced-choice" aria-pressed="false">나중에 쓸 돈을 남기려고</button></div>
+      ${feedback('l1-budget-reason', '먼저 고른 항목을 가리키고, 이유를 하나 골라보세요.')}`);
+
+    setSlide(19, 'student', '교통비 5천 원이 필요한 사건을 학생 자신의 예산에 적용합니다. 교통을 이미 골랐다면 그 돈을 또 빼지 않습니다. 교통을 고르지 않았다면 쓰지 않고 남는 돈(따로 남긴 돈 포함)으로 마련할 수 있는지 확인합니다. 부족하면 앞의 선택을 조정합니다. 남긴 학생도 돈을 전부 쓴 학생도 각자의 결과를 확인하게 하세요.', '학생 참여 · 다음 필요 확인', '집에 갈 교통비 5,000원이 필요해요', `
+      <div class="advanced-banner">교통카드 잔액이 0원이에요. 내가 만든 예산에서 확인해요.</div>
+      <div class="advanced-grid two"><div class="advanced-card"><b>계획에 넣은 교통비</b><strong id="l1-event-transport">0원</strong></div><div class="advanced-card safe"><b>쓰지 않고 남는 돈</b><strong id="l1-event-left">20,000원</strong><small>따로 남긴 돈도 포함</small></div></div>
+      ${feedback('l1-budget-event')}
+      <div class="advanced-options two"><button type="button" class="advanced-choice" id="l1-check-transport">교통비 마련 방법 확인</button><button type="button" class="advanced-choice" id="l1-edit-budget">17장으로 돌아가 조정</button></div>`);
+
+    function budgetAmounts() {
+      const selected = budgetItems.filter(([id]) => budgetSelection.has(id));
+      const spent = selected.filter(([id]) => id !== 'reserve').reduce((sum, item) => sum + item[3], 0);
+      const reserved = budgetSelection.has('reserve') ? 5000 : 0;
+      return { selected, spent, reserved, unassigned: 20000 - spent - reserved, left: 20000 - spent };
+    }
+
+    function updateBudget() {
+      const { selected, spent, reserved, unassigned, left } = budgetAmounts();
+      document.querySelectorAll('#budget-items button').forEach((button) => {
+        const active = budgetSelection.has(button.dataset.budgetId);
+        button.classList.toggle('selected', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      document.getElementById('spent').textContent = money(spent);
+      document.getElementById('budget-reserved').textContent = money(reserved);
+      document.getElementById('remain').textContent = money(unassigned);
+      document.getElementById('l1-budget-summary').textContent = `내 선택: ${selected.map((item) => item[2]).join(' · ') || '아직 고르지 않았어요'}`;
+      document.getElementById('l1-summary-spent').textContent = money(spent);
+      document.getElementById('l1-summary-left').textContent = money(left);
+      document.getElementById('l1-summary-reserved').textContent = `따로 남김 ${money(reserved)} + 아직 안 나눈 돈 ${money(unassigned)}`;
+      document.getElementById('l1-event-transport').textContent = money(budgetSelection.has('transport') ? 5000 : 0);
+      document.getElementById('l1-event-left').textContent = money(left);
+      document.getElementById('l1-budget-event').textContent = '교통비를 이미 골랐는지, 남는 돈으로 마련할 수 있는지 확인해요.';
+      document.querySelectorAll('#l1-budget-reasons button').forEach((button) => {
+        button.classList.remove('correct');
+        button.setAttribute('aria-pressed', 'false');
+      });
+      document.getElementById('l1-budget-reason').textContent = '먼저 고른 항목을 가리키고, 이유를 하나 골라보세요.';
+    }
+
+    document.getElementById('budget-items').addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-budget-id]');
+      if (!button) return;
+      const id = button.dataset.budgetId;
+      if (budgetSelection.has(id)) budgetSelection.delete(id);
+      else if (Number(button.dataset.cost) > budgetAmounts().unassigned) {
+        document.getElementById('l1-budget-feedback').textContent = '20,000원을 넘어요. 고른 항목을 취소하거나 다른 선택을 해보세요.';
+        return;
+      } else budgetSelection.add(id);
+      updateBudget();
+      document.getElementById('l1-budget-feedback').textContent = '선택이 반영됐어요. 쓸 돈과 남길 돈을 함께 확인해요.';
+    });
+    document.getElementById('budget-reset').addEventListener('click', () => {
+      budgetSelection.clear();
+      updateBudget();
+      document.getElementById('l1-budget-feedback').textContent = '선택을 모두 취소했어요. 20,000원으로 다시 골라보세요.';
+    });
+    document.getElementById('l1-budget-reasons').addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      if (!budgetSelection.size) {
+        document.getElementById('l1-budget-reason').textContent = '아직 고른 항목이 없어요. 17장에서 항목을 고르거나, 돈을 모두 남길 이유를 말하거나 가리켜보세요.';
+        return;
+      }
+      document.querySelectorAll('#l1-budget-reasons button').forEach((item) => {
+        item.classList.toggle('correct', item === button);
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+      document.getElementById('l1-budget-reason').textContent = `내 이유: ${button.textContent}. 어떤 항목을 먼저 골랐는지 함께 말하거나 가리켜보세요.`;
+    });
+    document.getElementById('l1-check-transport').addEventListener('click', () => {
+      const { left } = budgetAmounts();
+      document.getElementById('l1-budget-event').textContent = budgetSelection.has('transport')
+        ? '교통비 5,000원을 이미 계획에 넣었어요. 같은 교통비를 두 번 빼지 않아요.'
+        : left >= 5000
+          ? `남는 돈 ${money(left)}에서 교통비 5,000원을 마련할 수 있어요. 마련한 뒤 ${money(left - 5000)}이 남아요.`
+          : `교통비가 ${money(5000 - left)} 부족해요. 17장에서 미룰 수 있는 항목을 취소해 교통비를 마련해보세요.`;
+    });
+    document.getElementById('l1-edit-budget').addEventListener('click', () => show(16));
+    updateBudget();
 
     setSlide(22, 'teacher', '통장 화면의 숫자와 실제로 쓸 수 있는 돈이 다를 수 있음을 소개합니다. 미결제 카드금액과 예정 교통비 두 조건을 함께 빼게 합니다.', '보이는 잔액 ≠ 사용 가능 금액', '실제로 쓸 수 있는 돈은 얼마일까요?', `
       <div class="advanced-grid"><div class="advanced-card"><b>통장에 보이는 돈</b><strong>20,000원</strong></div><div class="advanced-card warn"><b>아직 빠지지 않은 카드값</b><strong>5,000원</strong></div><div class="advanced-card warn"><b>남겨 둘 교통비</b><strong>5,000원</strong></div></div>
@@ -57,8 +155,9 @@
       <div class="advanced-banner">카드로 결제한 돈도 실제로 나갈 돈입니다.</div>`);
 
     setSlide(26, 'student', '계산보다 판단 순서를 강조합니다. 남은 돈에서 오늘과 내일의 필수 지출을 먼저 확인한 뒤 선택하게 하세요.', '한 번 더 판단하기', '3,000원 음료를 사도 될까요?', `
+      <div class="lesson01-choice-layout">
       <div class="advanced-grid four"><div class="advanced-card"><b>현재 잔액</b><strong>12,000원</strong></div><div class="advanced-card"><b>오늘 점심</b><strong>6,000원</strong></div><div class="advanced-card"><b>오늘 교통</b><strong>3,000원</strong></div><div class="advanced-card warn"><b>내일 휴대전화 자동결제</b><strong>2,000원</strong></div></div>
-      <div class="advanced-options two">${pick('사지 않고 1,000원을 남긴다', true, 'l1s26', '맞아요. 예정 지출을 빼면 1,000원만 남아요.')}${pick('잔액이 12,000원이니 산다', false, 'l1s26', '보이는 잔액만 보지 말고 오늘과 내일 나갈 돈도 빼 보세요.')}</div>${feedback('l1s26')}`);
+      <div class="advanced-options two">${pick('사지 않고 1,000원을 남긴다', true, 'l1s26', '맞아요. 예정 지출을 빼면 1,000원만 남아요.')}${pick('잔액이 12,000원이니 산다', false, 'l1s26', '보이는 잔액만 보지 말고 오늘과 내일 나갈 돈도 빼 보세요.')}</div>${feedback('l1s26')}</div>`);
 
     setSlide(27, 'student', '형성평가 1입니다. 미결제 카드값과 예정 교통비를 모두 반영하는지 확인합니다.', '형성평가 1 / 3', '자유롭게 쓸 수 있는 돈은?', `
       <div class="advanced-equation"><span>잔액 30,000원</span><b>−</b><span>카드값 8,000원</span><b>−</b><span>교통비 7,000원</span></div>
@@ -108,20 +207,47 @@
 
   if (lesson === 3) {
     setSlide(8, 'teacher', '총지급액, 공제액, 실수령액의 관계를 실제 숫자로 보여 줍니다. 단어보다 세 숫자의 흐름을 먼저 이해하게 하세요.', '급여명세서 핵심', '월급에는 세 가지 금액이 있어요', `
-      <div class="advanced-grid"><div class="advanced-card"><b>총지급액</b><strong>1,324,000원</strong><small>기본급 + 수당</small></div><div class="advanced-card warn"><b>공제액</b><strong>115,000원</strong><small>월급에서 빠진 돈</small></div><div class="advanced-card safe"><b>실수령액</b><strong>1,209,000원</strong><small>통장에 들어올 돈</small></div></div>
+      <div class="advanced-grid"><div class="advanced-card"><b>총지급액</b><strong>1,300,000원</strong><small>8월 · 기본급 + 식대</small></div><div class="advanced-card warn"><b>공제액</b><strong>113,000원</strong><small>8월 · 월급에서 빠진 돈</small></div><div class="advanced-card safe"><b>실수령액</b><strong>1,187,000원</strong><small>8월 · 통장에 들어올 돈</small></div></div>
       <div class="advanced-equation"><span>총지급액</span><b>−</b><span>공제액</span><b>=</b><strong>실수령액</strong></div>`);
 
-    setSlide(16, 'student', '항목의 더하기와 빼기를 구분해 실수령액까지 연결합니다. 모든 공제 이름을 암기시키기보다 명세서의 위치와 부호를 찾게 하세요.', '명세서 함께 읽기', '통장에 들어올 돈을 찾아요', `
-      ${table(['항목', '구분', '금액'], [['기본급', '<span class="plus">지급 +</span>', '1,200,000원'], ['식대', '<span class="plus">지급 +</span>', '100,000원'], ['연장근무수당', '<span class="plus">지급 +</span>', '24,000원'], ['보험·세금', '<span class="minus">공제 −</span>', '115,000원'], ['실수령액', '<b>통장 입금</b>', '<b>1,209,000원</b>']])}
-      <div class="advanced-banner">지급은 더하고, 공제는 빼서 실수령액을 확인해요.</div>`);
+    // 16~20장의 핵심 활동은 같은 9월 명세서를 사용합니다. 1~14장의 8월 예시와 구분합니다.
+    const mainPayslip = { base: 1200000, meal: 100000, overtime: 24000, deduction: 115000 };
+    mainPayslip.gross = mainPayslip.base + mainPayslip.meal + mainPayslip.overtime;
+    mainPayslip.net = mainPayslip.gross - mainPayslip.deduction;
+    const salaryMoney = (value) => `${value.toLocaleString('ko-KR')}원`;
+    const payslipRows = [
+      ['기본급', '지급 +', salaryMoney(mainPayslip.base)],
+      ['식대', '지급 +', salaryMoney(mainPayslip.meal)],
+      ['연장근무수당', '지급 +', salaryMoney(mainPayslip.overtime)],
+      ['총지급액', '지급 합계', salaryMoney(mainPayslip.gross)],
+      ['보험·세금', '공제 −', salaryMoney(mainPayslip.deduction)],
+      ['실수령액', '통장 입금', salaryMoney(mainPayslip.net)],
+    ];
+    setSlide(16, 'student', '여기부터 새 사례인 지우의 9월 명세서입니다. 앞의 8월 예시와 달리 연장근무수당 24,000원이 있고 공제액도 115,000원입니다. 모든 숫자는 학습용 예시입니다. 17~20장도 이 명세서를 사용합니다. 합계 세 곳을 찾게 하고 모든 항목을 암기시키지 않습니다.', '새 사례 · 9월 명세서', '지우의 9월 급여명세서를 읽어요', `
+      <div class="lesson03-payslip">${table(['항목', '구분', '금액'], payslipRows)}
+      <div class="advanced-banner">지급일 9월 25일 · 8월과 달리 연장수당이 있어요. 다음 세 문제도 이 명세서로 풀어요.</div></div>`);
 
-    setSlide(20, 'student', '명세서 실수령액과 통장 입금을 날짜까지 함께 비교합니다. 2천 원 차이를 발견하는 것이 목표입니다.', '두 기록 맞춰 보기', '금액이 서로 같을까요?', `
-      <div class="advanced-grid two"><div class="advanced-card"><b>급여명세서 실수령액</b><strong>1,209,000원</strong><small>지급일 25일</small></div><div class="advanced-card warn"><b>통장 입금액</b><strong>1,207,000원</strong><small>25일 · 행복포장</small></div></div>
+    const mainQuestions = [
+      [17, '총지급액', 'gross', ['gross', 'net', 'deduction'], '기본급·식대·연장근무수당을 더한 지급 합계를 찾습니다.'],
+      [18, '공제액', 'deduction', ['gross', 'deduction', 'net'], '지급 항목과 구분하여 보험·세금으로 먼저 빠지는 금액을 찾습니다.'],
+      [19, '실수령액', 'net', ['gross', 'net', 'deduction'], '총지급액에서 공제액을 뺀 통장 입금 예상액을 찾습니다.'],
+    ];
+    const salaryNames = { gross: '총지급액', deduction: '공제액', net: '실수령액' };
+    mainQuestions.forEach(([number, label, answer, options, note]) => {
+      const id = `l3-main-${answer}`;
+      setSlide(number, 'student', `16장의 지우 9월 명세서와 같은 자료입니다. ${note} 숫자를 기억하는 문제가 되지 않도록 화면의 명세서를 보며 고르게 합니다.`, `핵심 활동 · ${number - 16}단계`, `${label}은 얼마인가요?`, `
+        <div class="lesson03-payslip-question">${table(['지우 · 9월 25일', '구분', '금액'], payslipRows)}
+        <div class="advanced-options">${options.map((key) => pick(salaryMoney(mainPayslip[key]), key === answer, id, key === answer ? `맞아요. 9월 ${label}은 ${salaryMoney(mainPayslip[key])}이에요.` : `${salaryMoney(mainPayslip[key])}은 ${salaryNames[key]}이에요. 명세서에서 ${label}을 다시 찾아보세요.`)).join('')}</div>${feedback(id, `같은 9월 명세서에서 ${label}을 찾아 누르세요.`)}</div>`);
+    });
+
+    setSlide(20, 'student', '16~19장의 같은 지우 9월 명세서를 통장 입금과 비교합니다. 두 기록 모두 9월 25일 행복포장 급여이며 통장에 2천 원 적게 들어온 사례입니다. 차이를 임의로 공제로 단정하지 말고 21장의 담당자 확인 행동으로 연결합니다.', '두 기록 맞춰 보기', '금액이 서로 같을까요?', `
+      <div class="advanced-grid two"><div class="advanced-card"><b>급여명세서 실수령액</b><strong>${salaryMoney(mainPayslip.net)}</strong><small>지우 · 지급일 9월 25일</small></div><div class="advanced-card warn"><b>통장 입금액</b><strong>${salaryMoney(mainPayslip.net - 2000)}</strong><small>9월 25일 · 행복포장</small></div></div>
       <div class="advanced-options two">${pick('2,000원 차이가 있으므로 확인한다', true, 'l3s20', '맞아요. 날짜와 입금자도 맞지만 금액이 2,000원 달라요.')}${pick('비슷한 금액이므로 그냥 넘어간다', false, 'l3s20', '작은 차이도 이유를 확인할 수 있어요.')}</div>${feedback('l3s20')}`);
 
     setSlide(21, 'teacher', '차이가 날 때 개인정보를 지키면서 해결하는 순서를 안내합니다. 학생이 도움 요청 문장을 따라 말하거나 가리킬 수 있게 하세요.', '안전한 확인 순서', '자료를 모아 담당자에게 물어요', `
+      <div class="lesson03-confirm-layout">
       <div class="advanced-grid"><div class="advanced-card safe"><b>1</b><strong>명세서 확인</strong><small>실수령액과 공제 항목</small></div><div class="advanced-card safe"><b>2</b><strong>통장 비교</strong><small>날짜·입금자·금액</small></div><div class="advanced-card safe"><b>3</b><strong>담당자 질문</strong><small>“2,000원 차이를 확인해 주세요.”</small></div></div>
-      <div class="advanced-banner">주민번호·계좌번호가 보이는 명세서는 온라인에 공개하지 않아요.</div>`);
+      <div class="advanced-banner">주민번호·계좌번호가 보이는 명세서는 온라인에 공개하지 않아요.</div></div>`);
 
     setSlide(23, 'student', '두 달의 명세서를 비교해 변화한 수당과 공제를 함께 찾게 합니다. 실수령액 변화의 원인을 한 가지 숫자로만 판단하지 않게 하세요.', '두 달 비교하기', '9월 실수령액이 달라진 이유는?', `
       ${table(['월', '기본급', '연장수당', '공제', '실수령액'], [['8월', '1,200,000원', '0원', '110,000원', '1,090,000원'], ['9월', '1,200,000원', '40,000원', '118,000원', '1,122,000원']])}

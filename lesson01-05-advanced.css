@@ -14,5 +14,34 @@
 .advanced-ledger-wrap{overflow-x:auto;border:2px solid #cfd9df;border-radius:18px;background:#fff}.advanced-ledger{width:100%;min-width:680px;border-collapse:collapse}.advanced-ledger th,.advanced-ledger td{border-bottom:1px solid #dce3e7;padding:12px 13px;text-align:left;font-size:clamp(17px,1.25vw,20px);line-height:1.35}.advanced-ledger th{background:#e9f2f3;color:#0e2a47;font-weight:950}.advanced-ledger tr:last-child td{border-bottom:0}.advanced-ledger .plus{color:#08715a;font-weight:950}.advanced-ledger .minus{color:#b24821;font-weight:950}.advanced-ledger .focus-row{background:#fff5dc}
 .advanced-equation{display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;margin:18px 0}.advanced-equation span,.advanced-equation strong{border-radius:15px;padding:13px 17px;background:#fff;color:#0e2a47;font-size:clamp(23px,2.2vw,34px);font-weight:950;white-space:nowrap;box-shadow:0 5px 16px rgba(14,42,71,.08)}.advanced-equation b{color:#f47b34;font-size:29px}
 .advanced-dates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.advanced-date{border:2px solid #cfdae0;border-radius:18px;padding:15px 10px;background:#fff;text-align:center}.advanced-date.due{border:4px solid #f47b34;background:#fff5ec}.advanced-date strong{display:block;color:#0e2a47;font-size:clamp(23px,2vw,31px)}.advanced-date span{display:block;margin-top:6px;color:#526579;font-size:18px;font-weight:850;line-height:1.35}
-@media(max-width:900px){.slide{height:calc(100vh - 71px)!important;align-items:stretch!important;padding:10px!important}.slide-inner{width:100%!important;height:100%!important;aspect-ratio:auto!important;padding:28px 24px 42px!important;overflow-x:hidden!important;overflow-y:auto!important}.slide-body{height:auto!important;min-height:calc(100% - 70px);justify-content:flex-start!important}.advanced-video-layout{grid-template-columns:1fr}.advanced-video-layout .advanced-card{display:none}.advanced-grid,.advanced-grid.four,.advanced-options{grid-template-columns:repeat(2,minmax(0,1fr))}.advanced-dates{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lesson01-budget .budget-builder{grid-template-columns:minmax(0,1fr) 230px;gap:18px}
+.lesson01-budget .budget-items{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.lesson01-budget .budget-items button{min-width:0;min-height:112px;padding:10px 8px;font-size:30px;line-height:1.2;color:#0e2a47}
+.lesson01-budget .budget-items button b{font-size:22px;white-space:nowrap}
+.lesson01-budget .budget-items button small{font-size:18px;white-space:nowrap}
+.lesson01-budget .budget-items button.selected{border-width:4px;box-shadow:inset 0 0 0 1px #1f9d68}
+.lesson01-budget .budget-meter{padding:14px;gap:3px}
+.lesson01-budget .budget-meter span{font-size:18px}
+.lesson01-budget .budget-meter strong{font-size:28px;margin:0 0 5px;white-space:nowrap}
+.lesson01-budget .reset{min-height:44px;font-size:18px}
+.lesson01-budget button:focus-visible,#l1-budget-reasons button:focus-visible,#l1-check-transport:focus-visible,#l1-edit-budget:focus-visible{outline:4px solid #f47b34;outline-offset:3px}
+.lesson03-payslip .advanced-ledger,.lesson03-payslip-question .advanced-ledger{min-width:0}
+.lesson03-payslip .advanced-ledger th,.lesson03-payslip .advanced-ledger td,.lesson03-payslip-question .advanced-ledger th,.lesson03-payslip-question .advanced-ledger td{padding:6px 12px;font-size:18px;line-height:1.3}
+.lesson03-payslip .advanced-ledger td:last-child,.lesson03-payslip-question .advanced-ledger td:last-child{white-space:nowrap}
+.lesson03-payslip .advanced-ledger tr:nth-child(4),.lesson03-payslip .advanced-ledger tr:last-child,.lesson03-payslip-question .advanced-ledger tr:nth-child(4),.lesson03-payslip-question .advanced-ledger tr:last-child{background:#e4f7ef;font-weight:900}
+.lesson03-payslip .advanced-banner{margin:14px 0 0}
+.lesson03-payslip-question .advanced-options{margin-top:14px}
+.lesson03-payslip-question .advanced-choice{min-height:58px;padding:10px;font-size:22px;white-space:nowrap}
+.lesson03-payslip-question .advanced-feedback{min-height:48px;padding:10px 12px}
+.lesson01-choice-layout{display:grid;gap:24px}
+.lesson01-choice-layout .advanced-grid.four{gap:20px}
+.lesson01-choice-layout .advanced-feedback{margin-top:0}
+.lesson03-confirm-layout{display:grid;gap:28px}
+.lesson03-confirm-layout .advanced-grid{gap:24px}
+.lesson03-confirm-layout .advanced-card.safe{background:#fff}
+.lesson03-confirm-layout .advanced-card>b{display:grid;width:36px;height:36px;place-items:center;border-radius:50%;background:#0f766e;color:#fff;font-size:20px}
+.lesson03-confirm-layout .advanced-card strong{margin-top:14px}
+.lesson03-confirm-layout .advanced-banner{margin:0;background:#fff1e7;border-left-color:#f47b34}
+@media(max-width:900px){.slide{height:calc(100vh - 71px)!important;align-items:stretch!important;padding:10px!important}.slide-inner{width:100%!important;height:100%!important;aspect-ratio:auto!important;padding:28px 24px 42px!important;overflow-x:hidden!important;overflow-y:auto!important}.slide-body{height:auto!important;min-height:calc(100% - 70px);justify-content:flex-start!important}.advanced-video-layout{grid-template-columns:1fr}.advanced-video-layout .advanced-card{display:none}.advanced-grid,.advanced-grid.four,.advanced-options{grid-template-columns:repeat(2,minmax(0,1fr))}.advanced-dates{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson01-budget .budget-builder{grid-template-columns:1fr}.lesson01-budget .budget-items{grid-template-columns:repeat(4,minmax(0,1fr))}.lesson01-budget .budget-meter{display:grid;grid-template-columns:1fr 1fr;text-align:center}.lesson01-budget .budget-meter .reset{grid-column:1/-1}.lesson03-payslip-question .advanced-options{grid-template-columns:1fr}}
+@media(max-width:620px){.lesson01-budget .budget-items{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson03-payslip .advanced-ledger th,.lesson03-payslip .advanced-ledger td,.lesson03-payslip-question .advanced-ledger th,.lesson03-payslip-question .advanced-ledger td{padding:6px;font-size:18px}}
 @media(max-width:620px){.advanced-grid,.advanced-grid.two,.advanced-grid.four,.advanced-options,.advanced-options.two{grid-template-columns:1fr}}
