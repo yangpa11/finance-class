@@ -276,25 +276,26 @@
       ${table(['계획', '합계', '확인할 점'], [['A', '1,200,000원', '월세·생활비·비상 여유 70,000원 포함'], ['B', '1,150,000원', '월세 400,000원이 빠짐'], ['C', '1,260,000원', '월급보다 60,000원 많음']])}
       <div class="advanced-options">${pick('계획 A', true, 'l4s12', '맞아요. 필수 지출이 들어 있고 월급 안에서 여유금도 남겨요.')}${pick('계획 B', false, 'l4s12', '합계는 적지만 꼭 내야 할 월세가 빠졌어요.')}${pick('계획 C', false, 'l4s12', '필수 항목이 있어도 월급을 넘으면 조정이 필요해요.')}</div>${feedback('l4s12')}`);
 
-    setSlide(16, 'teacher', '월급날과 자동이체일 사이의 순서를 봅니다. 잔액이 많아 보여도 먼저 따로 둘 금액을 계산하게 하세요.', '날짜가 있는 예산', '월급날에 먼저 남겨 둘 돈은?', `
-      <div class="advanced-dates"><div class="advanced-date"><strong>25일</strong><span>월급 1,200,000원</span></div><div class="advanced-date due"><strong>28일</strong><span>월세 400,000원</span></div><div class="advanced-date due"><strong>30일</strong><span>휴대전화 60,000원</span></div><div class="advanced-date"><strong>매주</strong><span>식비·교통 400,000원</span></div></div>
-      <div class="advanced-equation"><span>월세 400,000원</span><b>+</b><span>휴대전화 60,000원</span><b>+</b><span>생활비 400,000원</span><b>=</b><strong>860,000원</strong></div>`);
+    setSlide(16, 'teacher', '15~22장은 같은 학생 예산판입니다. 월급 120만 원과 고정 월세 40만 원으로 시작합니다. 월세는 이미 예산에 반영되어 있습니다. 나머지 금액은 뒤 화면에서 학생이 정하며 예시 금액을 중간에 다른 계획처럼 끼워 넣지 않습니다. 날짜가 정해진 돈은 먼저 확보하도록 안내합니다.', '예산판 1 · 날짜와 고정 지출', '월세 400,000원은 먼저 준비해요', `
+      <div class="lesson04-plan-step"><div class="advanced-grid"><div class="advanced-card"><b>25일 · 실수령액</b><strong>1,200,000원</strong></div><div class="advanced-card warn"><b>28일 · 월세</b><strong>400,000원</strong><small>내 예산에 이미 반영</small></div><div class="advanced-card"><b>30일 · 통신비</b><strong>19장에서 선택</strong><small>요금제에 맞게 준비</small></div></div>
+      <div class="advanced-banner">월세를 뺀 800,000원에서 식비·교통·통신·생활용품·여가·저축을 나눠요.</div></div>`);
 
-    setSlide(17, 'student', '식비를 한 번에 확정하지 않고 생활 조건을 근거로 시작 금액을 정한 뒤 매주 조정하는 전략을 소개합니다.', '변동 지출 정하기', '이번 달 식비는 어떻게 계획할까요?', `
-      <div class="advanced-grid"><div class="advanced-card"><b>급식 이용</b><strong>12일</strong></div><div class="advanced-card"><b>주말</b><strong>집에서 요리</strong></div><div class="advanced-card"><b>현재 재료</b><strong>냉동식품 있음</strong></div></div>
-      <div class="advanced-options two">${pick('260,000원으로 시작하고 매주 사용액을 확인한다', true, 'l4s17', '좋아요. 현재 조건을 반영해 계획하고 실제 사용액에 따라 조정해요.')}${pick('지난달 금액을 확인 없이 그대로 쓴다', false, 'l4s17', '이번 달의 급식일과 집에 있는 재료가 달라졌어요.')}</div>${feedback('l4s17')}`);
+    setSlide(17, 'student', '급식 12일, 주말 집에서 요리, 집에 재료가 있는 조건을 봅니다. 식비는 26만 원부터 계획할 수 있는 가상 사례입니다. 외식이나 식비 여유를 더 잡는 선택도 가능하지만 다른 항목까지 월급 안에 들어가는지 확인하게 합니다. 선택한 금액은 22장의 내 예산에 저장되며 매주 실제 사용액에 맞춰 조정합니다.', '예산판 2 · 생활 조건 보기', '이번 달 식비를 정해요', `
+      <div class="lesson04-plan-step"><div class="advanced-grid lesson04-food-cards"><div class="advanced-card"><b>급식 이용</b><strong>12일</strong></div><div class="advanced-card"><b>주말</b><strong>집에서 요리</strong></div><div class="advanced-card"><b>현재 재료</b><strong>냉동식품 있음</strong></div></div>
+      <div class="advanced-options"><button type="button" class="advanced-choice" aria-pressed="false" onclick="chooseBudget(this,'food',260000)">260,000원<small>현재 조건으로 시작</small></button><button type="button" class="advanced-choice" aria-pressed="false" onclick="chooseBudget(this,'food',300000)">300,000원<small>외식도 조금 계획</small></button><button type="button" class="advanced-choice" aria-pressed="false" onclick="chooseBudget(this,'food',350000)">350,000원<small>식비 여유를 더 준비</small></button></div>${feedback('l4s17', '금액을 누르면 내 예산에 반영돼요. 매주 사용액을 확인해 조정해요.')}</div>`);
 
-    setSlide(20, 'student', '생활용품은 남은 양과 교체 시점을 함께 보고 예산에 넣습니다. 값이 싼지보다 이번 달 안에 필요한지를 판단하게 하세요.', '재고와 시기 확인', '이번 달 생활용품 예산은?', `
-      ${table(['물건', '남은 양', '가격', '이번 달 판단'], [['세제', '약 2주', '18,000원', '다음 달 가능'], ['화장지', '약 1개월', '15,000원', '다음 달 가능'], ['샴푸', '약 3일', '12,000원', '이번 달 필요']])}
-      <div class="advanced-options">${pick('샴푸 12,000원만 먼저 잡는다', true, 'l4s20', '맞아요. 남은 양과 필요한 시기를 함께 봤어요.')}${pick('세 가지를 모두 산다', false, 'l4s20', '이번 달 안에 꼭 바꿔야 하는 물건부터 확인해요.')}${pick('가장 싼 물건만 산다', false, 'l4s20', '가격보다 남은 양과 필요한 시기가 먼저예요.')}</div>${feedback('l4s20')}`);
+    setSlide(20, 'student', '앞으로 30일의 생활용품 예산을 만드는 가상 조건입니다. 세제는 약 2주, 샴푸는 약 3일 남아 있으므로 30일 안에 보충할 두 물품의 합계 3만 원을 먼저 확인합니다. 화장지도 미리 보충하면 4만5천 원입니다. 둘 중 하나를 선택하면 실제 예산판에 저장됩니다. 미리 사는 선택을 무조건 틀렸다고 하지 말고 현재 재고와 다른 지출을 함께 판단하게 합니다.', '예산판 5 · 재고와 구매 시기', '앞으로 30일, 생활용품비는?', `
+      <div class="lesson04-plan-step">${table(['물건', '남은 양', '보충 가격', '30일 안의 필요'], [['세제', '약 2주', '18,000원', '보충 필요'], ['화장지', '약 1개월', '15,000원', '지금은 충분'], ['샴푸', '약 3일', '12,000원', '보충 필요']])}
+      <div class="advanced-options two"><button type="button" class="advanced-choice" aria-pressed="false" onclick="chooseBudget(this,'living',30000)">30,000원<small>세제 + 샴푸 보충</small></button><button type="button" class="advanced-choice" aria-pressed="false" onclick="chooseBudget(this,'living',45000)">45,000원<small>화장지도 미리 보충</small></button></div>${feedback('l4s20', '필요한 시기와 남은 예산을 보고 선택해요. 선택 금액이 예산에 저장돼요.')}</div>`);
 
-    setSlide(22, 'teacher', '통장에 보이는 잔액에서 예정 지출, 저축, 비상 여유를 구분해 실제 자유금액을 계산합니다.', '예산의 여유 찾기', '270,000원을 모두 써도 될까요?', `
-      <div class="advanced-grid"><div class="advanced-card"><b>월급</b><strong>1,200,000원</strong></div><div class="advanced-card warn"><b>예정 지출</b><strong>930,000원</strong></div><div class="advanced-card safe"><b>저축·비상 여유</b><strong>170,000원</strong></div></div>
-      <div class="advanced-equation"><span>보이는 나머지 270,000원</span><b>−</b><span>저축·여유 170,000원</span><b>=</b><strong>자유금액 100,000원</strong></div>
-      <div hidden><div id="totalCard"><strong id="budgetTotal"></strong></div><strong id="budgetRemain"></strong><div id="budgetSummary"></div><div id="budgetFeedback"></div></div>`);
+    setSlide(22, 'student', '16~21장에서 만든 예산의 실제 결과입니다. 합계에는 저축·여유돈도 포함됩니다. 아직 배정하지 않은 돈을 지금 모두 써도 되는 돈으로 단정하지 않습니다. 미선택 항목과 초과 금액을 함께 확인하고 해당 항목 버튼으로 돌아가 수정합니다. 선택은 화면을 오가도 유지됩니다. 다시 만들기는 월세 40만 원만 남기고 학생 선택을 초기화합니다.', '예산판 결과 · 내 선택 확인', '내 한 달 예산을 확인해요', `
+      <div class="lesson04-budget-result"><div class="budget-status"><div class="status-card"><span>한 달 실수령액</span><strong>1,200,000원</strong></div><div class="status-card" id="totalCard"><span>배정 합계 · 저축 포함</span><strong id="budgetTotal">400,000원</strong></div><div class="status-card"><span id="budgetBalanceLabel">아직 안 나눈 돈</span><strong id="budgetRemain">800,000원</strong></div></div>
+      <div class="budget-summary" id="budgetSummary" aria-label="항목별 선택 금액"></div><div class="feedback" id="budgetFeedback" aria-live="polite"></div>
+      <div class="lesson04-budget-actions"><button type="button" class="choice" onclick="show(16)">식비 수정</button><button type="button" class="choice" onclick="show(17)">교통비 수정</button><button type="button" class="choice" onclick="show(18)">통신비 수정</button><button type="button" class="choice" onclick="show(19)">생활용품 수정</button><button type="button" class="choice" onclick="show(20)">여가·저축 수정</button><button type="button" class="choice" onclick="resetMonthlyBudget()">다시 만들기</button></div></div>`);
+    renderBudget();
 
     setSlide(23, 'student', '새로운 필수 지출이 생기면 미룰 수 있는 항목에서 조정합니다. 자동이체를 무단으로 미루거나 카드 사용을 빼먹는 선택은 피하게 하세요.', '예산 바꾸기', '병원비 50,000원이 생겼어요', `
-      <div class="advanced-banner">현재 계획은 월급과 합계가 같습니다. 병원비 50,000원을 새로 넣어야 해요.</div>
+      <div class="advanced-banner">다른 사례: 월급 1,200,000원을 모두 배정한 계획에 병원비 50,000원이 생겼어요.</div>
       <div class="advanced-options">${pick('여가 30,000원 + 외식 20,000원을 줄인다', true, 'l4s23', '좋아요. 미룰 수 있는 항목을 조정해 새 필수 지출을 넣었어요.')}${pick('월세 자동이체를 취소한다', false, 'l4s23', '월세처럼 꼭 내야 하는 돈을 먼저 지켜요.')}${pick('카드로 결제하고 예산에는 쓰지 않는다', false, 'l4s23', '카드 결제도 실제 지출이므로 예산에 기록해야 해요.')}</div>${feedback('l4s23')}`);
 
     setSlide(27, 'student', '형성평가 1입니다. 월급 직후 우선순위를 확인합니다.', '형성평가 1 / 3', '월급날 가장 먼저 할 일은?', `

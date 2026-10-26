@@ -1,0 +1,38 @@
+/* 8차시 카드 정렬과 환불 계산 화면 */
+.slide:not(.hero) .card,.slide .product,.slide .final-card{text-align:center;min-width:0;word-break:keep-all}
+.slide:not(.hero) h2{word-break:keep-all}
+.slide:not(.hero) .card{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.slide .product{display:flex;flex-direction:column;align-items:center}
+.slide .product .spec{align-self:stretch;text-align:center}
+.slide .product h3{margin:12px 0;line-height:1.3}
+.slide .product .price{margin:12px 0;white-space:nowrap}
+.slide .choice,.slide .feedback,.slide .student-callout,.slide .refund-condition,.slide .refund-caption{text-align:center;word-break:keep-all}
+.refund-facts>div{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.lesson08-center-title,.lesson08-center-label{text-align:center}
+.lesson08-single-title{font-size:clamp(28px,3.6vw,44px);white-space:nowrap;word-break:keep-all}
+.lesson08-sequence-title{word-break:keep-all;text-wrap:initial}
+@media(max-width:900px){.lesson08-single-title{font-size:32px;white-space:normal;word-break:keep-all}.lesson08-sequence-title{font-size:36px}}
+.refund-slide .slide-inner{gap:18px}
+.refund-slide h2{font-size:clamp(32px,3.4vw,46px);margin:0;word-break:keep-all;text-wrap:balance}
+.refund-slide .eyebrow,.refund-slide .quiz-no{margin:0}
+.refund-condition{margin:0;border-left:7px solid #f47b34;border-radius:14px;padding:12px 16px;background:#fff4e9;font-size:18px;font-weight:800;line-height:1.5;word-break:keep-all}
+.refund-caption{margin:0;color:#41586a;font-size:18px;line-height:1.5;font-weight:800;word-break:keep-all}
+.refund-slide .receipt{width:100%;max-width:850px;padding:16px 22px}
+.refund-slide .receipt-row{align-items:center;font-size:20px;line-height:1.4}
+.refund-slide .receipt-row strong{flex:none;white-space:nowrap;font-size:24px}
+.refund-slide .receipt-row.total{font-size:24px}
+.refund-back{background:#e9f8ef;color:#075f4d}
+.refund-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.refund-facts>div{border:2px solid #cedbe0;border-radius:18px;padding:16px;background:#f5f8f9}
+.refund-facts>div.refund-back{background:#e9f8ef;border-color:#76c7a4}
+.refund-facts span{display:grid;min-height:2.8em;place-items:center;font-size:18px;font-weight:800;line-height:1.4;word-break:keep-all}
+.refund-facts strong{display:block;margin-top:10px;color:#0f766e;font-size:28px;white-space:nowrap}
+.refund-slide .choices,.refund-slide .feedback{margin:0}
+.refund-slide .choice{font-size:22px;word-break:keep-all;min-width:0}
+.refund-slide .product{padding:20px}
+.refund-slide .product h3{font-size:26px;word-break:keep-all}
+.refund-slide .spec{margin-top:12px;gap:8px}
+.refund-slide .spec span{font-size:18px;word-break:keep-all}
+.refund-total{margin:16px 0 0;border-top:2px solid #dce5e7;padding-top:12px;font-size:20px;font-weight:800;word-break:keep-all}
+.refund-total strong{display:block;margin-top:6px;color:#0f766e;font-size:30px;white-space:nowrap}
+@media(max-width:900px){.refund-slide .slide-inner{gap:20px}.refund-facts{grid-template-columns:1fr}.refund-slide .receipt-row{align-items:flex-start;flex-wrap:wrap;gap:6px}.refund-slide .receipt-row strong{margin-left:auto}.refund-slide .receipt-row.total{font-size:22px}}

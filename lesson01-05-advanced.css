@@ -42,6 +42,33 @@
 .lesson03-confirm-layout .advanced-card>b{display:grid;width:36px;height:36px;place-items:center;border-radius:50%;background:#0f766e;color:#fff;font-size:20px}
 .lesson03-confirm-layout .advanced-card strong{margin-top:14px}
 .lesson03-confirm-layout .advanced-banner{margin:0;background:#fff1e7;border-left-color:#f47b34}
+.lesson04-plan-step{display:grid;gap:20px}
+.lesson04-food-cards .advanced-card{text-align:center;display:flex;flex-direction:column;justify-content:center}
+.lesson04-paybox{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr) 48px minmax(0,1fr);gap:14px;align-items:stretch}
+.lesson04-paybox>.pay-amount{display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;min-height:150px;padding:24px 14px;border-radius:20px;text-align:center}
+.lesson04-paybox .pay-amount span{font-size:24px;line-height:1.3}
+.lesson04-paybox .pay-amount strong{font-size:clamp(24px,2.4vw,32px);line-height:1.3;white-space:nowrap}
+.lesson04-paybox>.pay-result{background:#e4f7ef;color:#0f766e}
+.lesson04-paybox .pay-operator{display:grid;place-items:center;font-size:44px;line-height:1;color:#f47b34}
+@media(max-width:620px){.lesson04-paybox{grid-template-columns:1fr;gap:10px}.lesson04-paybox>.pay-amount{min-height:110px;padding:16px}.lesson04-paybox .pay-operator{min-height:40px;font-size:36px}}
+.lesson04-plan-step .advanced-banner,.lesson04-plan-step .advanced-feedback{margin:0}
+.lesson04-plan-step .advanced-choice{font-size:24px;font-family:inherit}
+.lesson04-plan-step .advanced-choice small{display:block;margin-top:8px;font-size:18px;line-height:1.4}
+.lesson04-plan-step .advanced-choice.selected{border-color:#1f9d68;background:#e3f8ed;box-shadow:inset 0 0 0 1px #1f9d68}
+.lesson04-plan-step .advanced-ledger{min-width:0}
+.lesson04-plan-step .advanced-ledger th,.lesson04-plan-step .advanced-ledger td{font-size:18px;padding:10px 12px}
+.lesson04-budget-result{display:grid;gap:12px}
+.slide:nth-of-type(22) .lesson04-budget-result .budget-summary{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0}
+.slide:nth-of-type(22) .lesson04-budget-result .budget-summary>div{padding:8px 12px;border:2px solid #d8e4e5;background:#f5faf7}
+.lesson04-budget-result .budget-summary span,.lesson04-budget-result .budget-summary strong{display:block;font-size:18px;line-height:1.45}
+.lesson04-budget-result .budget-summary strong{color:#0f766e;white-space:nowrap}
+.slide:nth-of-type(22) .lesson04-budget-result .budget-summary .is-missing{border-style:dashed;background:#fff6ed}
+.lesson04-budget-result .budget-summary .is-missing strong{color:#99440f}
+.slide:nth-of-type(22) .lesson04-budget-result .feedback{margin:0;min-height:52px;font-size:18px;line-height:1.45}
+.lesson04-budget-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.slide:nth-of-type(22) .lesson04-budget-actions button.choice{margin:0!important;min-height:44px!important;padding:8px;font-size:20px;font-family:inherit}
+@media(max-width:900px){.slide:nth-of-type(22) .lesson04-budget-result .budget-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson04-budget-result .budget-status{grid-template-columns:repeat(3,minmax(0,1fr))}.lesson04-budget-result .status-card strong{font-size:22px!important}}
+@media(max-width:620px){.lesson04-budget-result .budget-status{grid-template-columns:1fr}.slide:nth-of-type(22) .lesson04-budget-result .budget-summary{grid-template-columns:1fr}.lesson04-budget-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson04-plan-step .advanced-ledger th,.lesson04-plan-step .advanced-ledger td{padding:8px 6px}}
 @media(max-width:900px){.slide{height:calc(100vh - 71px)!important;align-items:stretch!important;padding:10px!important}.slide-inner{width:100%!important;height:100%!important;aspect-ratio:auto!important;padding:28px 24px 42px!important;overflow-x:hidden!important;overflow-y:auto!important}.slide-body{height:auto!important;min-height:calc(100% - 70px);justify-content:flex-start!important}.advanced-video-layout{grid-template-columns:1fr}.advanced-video-layout .advanced-card{display:none}.advanced-grid,.advanced-grid.four,.advanced-options{grid-template-columns:repeat(2,minmax(0,1fr))}.advanced-dates{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson01-budget .budget-builder{grid-template-columns:1fr}.lesson01-budget .budget-items{grid-template-columns:repeat(4,minmax(0,1fr))}.lesson01-budget .budget-meter{display:grid;grid-template-columns:1fr 1fr;text-align:center}.lesson01-budget .budget-meter .reset{grid-column:1/-1}.lesson03-payslip-question .advanced-options{grid-template-columns:1fr}}
 @media(max-width:620px){.lesson01-budget .budget-items{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson03-payslip .advanced-ledger th,.lesson03-payslip .advanced-ledger td,.lesson03-payslip-question .advanced-ledger th,.lesson03-payslip-question .advanced-ledger td{padding:6px;font-size:18px}}
 @media(max-width:620px){.advanced-grid,.advanced-grid.two,.advanced-grid.four,.advanced-options,.advanced-options.two{grid-template-columns:1fr}}
